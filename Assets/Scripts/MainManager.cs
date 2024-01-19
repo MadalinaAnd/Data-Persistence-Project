@@ -11,18 +11,24 @@ public class MainManager : MonoBehaviour
     public Rigidbody Ball;
 
     public Text ScoreText;
+    public Button button;
     public GameObject GameOverText;
-    
-    private bool m_Started = false;
+
+	private bool m_Started = false;
     private int m_Points;
     
     private bool m_GameOver = false;
 
-    
-    // Start is called before the first frame update
-    void Start()
+	private void Awake()
+	{
+		button = FindObjectOfType<Button>();
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
-        const float step = 0.6f;
+
+		const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
         
         int[] pointCountArray = new [] {1,1,2,2,5,5};
@@ -36,9 +42,16 @@ public class MainManager : MonoBehaviour
                 brick.onDestroyed.AddListener(AddPoint);
             }
         }
-    }
+		button.onClick.AddListener(StartButton);
+	}
 
-    private void Update()
+
+	public void StartButton()
+	{
+		SceneManager.LoadScene(0);
+	}
+
+	private void Update()
     {
         if (!m_Started)
         {
