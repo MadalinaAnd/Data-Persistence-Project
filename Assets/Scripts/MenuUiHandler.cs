@@ -10,6 +10,7 @@ public class MenuUiHandler : MonoBehaviour
 	private Button startButton;
 	private Button endButton;
 	private Button scoreButton;
+	private Button settingsButton;
 
 
 	private void Awake()
@@ -17,6 +18,7 @@ public class MenuUiHandler : MonoBehaviour
 		startButton = transform.Find("StartGame").GetComponent<Button>();
 		endButton = transform.Find("EndGame").GetComponent<Button>();
 		scoreButton = transform.Find("HighScore").GetComponent<Button>();
+		settingsButton = transform.Find("PlayerSettings").GetComponent<Button>();
 	}
 
 	private void Start()
@@ -24,11 +26,17 @@ public class MenuUiHandler : MonoBehaviour
 		startButton.onClick.AddListener(StartButton);
 		endButton.onClick.AddListener(ExitButton);
 		scoreButton.onClick.AddListener(HighScoreButton);
+		settingsButton.onClick.AddListener(PlayerSettingsButton);
 	}
 
 	public void StartButton()
 	{
 		SceneManager.LoadScene(1);
+	}
+
+	public void PlayerSettingsButton()
+	{
+		SceneManager.LoadScene(3);
 	}
 
 	public void HighScoreButton()
